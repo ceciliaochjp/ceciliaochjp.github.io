@@ -62,7 +62,8 @@ h4,
 h5,
 h6 {
 	font: 1.5rem/0.75 "Tangerine", serif;
-	font: 1.5rem/1 "Forum", serif;
+	font: 1.5rem/1 "Forum", serif; /* NOTE: With Forum */
+	letter-spacing: -0.015em;
 	color: var(--title-color);
 	text-wrap: balance;
 	margin: 0 0 1.5rem;
@@ -75,7 +76,7 @@ h1 {
 
 h2 {
 	font-size: clamp(3rem, 7.5vw, 4rem);
-	font-size: clamp(2rem, 7.5vw, 3rem);
+	font-size: clamp(2rem, 7.5vw, 3rem); /* NOTE: With Forum */
 }
 
 p {
@@ -251,11 +252,9 @@ body {
 				translate: -50% -50%;
 				z-index: -1;
 
-				/* font-family: sans-serif; */
-				opacity: 0.75;
-				opacity: 0.15;
+				opacity: 0.1;
 				font-size: 400%;
-				color: var(--color-secondary);
+				color: var(--color-primary);
 			}
 
 			/* JP */
