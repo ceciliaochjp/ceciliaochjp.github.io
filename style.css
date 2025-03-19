@@ -1,0 +1,324 @@
+@font-face {
+	font-family: "Tangerine";
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: url("assets/Tangerine-Regular.ttf") format("truetype");
+}
+
+:root {
+	interpolate-size: allow-keywords;
+
+	--site-width-min: 85vw;
+	--site-width-max: 1200px;
+	--site-width: min(var(--site-width-min), var(--site-width-max));
+	--site-padding: calc((100vw - var(--site-width)) / 2);
+
+	--text-color: light-dark(black, white);
+
+	--body-bg: #fffbf0;
+	--color-primary: #486052;
+	--color-secondary: #90b69f;
+	--color-tertiary: #ffeee4;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+html {
+	background-color: var(--body-bg);
+	font-size: 100%;
+	color: var(--text-color);
+	scroll-behavior: smooth;
+}
+
+body {
+	font: 1rem/1.6 Helvetica, sans-serif;
+	margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font: 1.5rem/0.75 "Tangerine", serif;
+	margin: 0 0 1.5rem;
+	text-wrap: balance;
+}
+
+h1 {
+	font-size: clamp(6rem, 10vw, 20rem);
+}
+
+h2 {
+	font-size: clamp(3rem, 7.5vw, 5rem);
+}
+
+p {
+	margin: 0 0 1rem;
+}
+
+img {
+	display: block;
+	margin: 0 0 2rem;
+	max-width: 100%;
+	height: auto;
+	object-fit: cover;
+}
+
+iframe {
+	width: 100%;
+	margin: 0 0 2rem;
+}
+
+a {
+	color: var(--color-primary);
+	text-underline-offset: 0.25rem;
+}
+
+nav {
+	display: inline-flex;
+	flex-wrap: wrap;
+	gap: 0.75rem;
+
+	> * {
+		flex: 1 0 auto;
+	}
+}
+
+hr {
+	/* TODO: CANIUSE? https://s3-us-west-2.amazonaws.com/s.cdpn.io/101448/wedding-divider-png-9.png */
+	background: url(assets/divider.png) no-repeat;
+	background-size: contain;
+	border: 0;
+	margin: 1rem 0;
+	aspect-ratio: 1340/87;
+	filter: brightness(0);
+}
+
+details {
+	&:not(:last-child) {
+		margin-bottom: 0.75rem;
+	}
+
+	summary {
+		cursor: pointer;
+		padding-left: 2rem;
+		position: relative;
+
+		&::before {
+			content: "▾"; /* TODO: Use + instead and rotate 315deg */
+			display: block;
+			transition: rotate 0.4s ease;
+			position: absolute;
+			left: 0;
+			top: 50%;
+			translate: 0 -50%;
+		}
+	}
+
+	&[open] summary::before {
+		rotate: -180deg;
+	}
+
+	> :last-child {
+		margin-bottom: 0;
+	}
+
+	::marker {
+		content: "";
+	}
+
+	::-webkit-details-marker {
+		display: none;
+	}
+
+	&::details-content {
+		transition: height 0.4s ease, content-visibility 0.4s ease allow-discrete;
+		height: 0;
+		overflow: clip;
+		padding-left: 2rem;
+		font-size: smaller;
+	}
+
+	&[open]::details-content {
+		height: auto;
+	}
+
+	/* Fallback for browsers with no interpolate-size support */
+	@supports not (interpolate-size: allow-keywords) {
+		&[open]::details-content {
+			height: 10rem;
+			overflow-y: scroll; /* In case the contents should be taller than 150px */
+		}
+	}
+}
+
+.button {
+	background: var(--color-primary);
+
+	display: inline-block;
+	padding: 0.75rem 2rem;
+
+	color: white;
+	text-decoration: none;
+	text-align: center;
+
+	border: 2px solid var(--color-primary);
+	border-radius: 999px;
+
+	transition: all 0.4s ease;
+
+	&:hover {
+		filter: brightness(1.25);
+	}
+}
+
+.button--ghost {
+	&:not(:hover) {
+		background: transparent;
+		color: var(--color-primary);
+	}
+
+	&:hover {
+		filter: none;
+	}
+}
+
+body {
+	> header,
+	> section,
+	> footer {
+		padding: clamp(2rem, 5vw, 5rem) var(--site-padding);
+
+		> :last-child {
+			margin-bottom: 0;
+		}
+	}
+
+	> header,
+	> footer {
+		text-align: center;
+	}
+
+	> header {
+		padding-top: 8rem;
+
+		h1 {
+			position: relative;
+
+			/* & */
+			span {
+				position: absolute;
+				left: 50%;
+				top: 50%;
+				translate: -50% -50%;
+				z-index: -1;
+
+				/* font-family: sans-serif; */
+				opacity: 0.75;
+				font-size: 400%;
+				color: var(--color-tertiary);
+			}
+
+			/* JP */
+			strong {
+				font-weight: normal;
+				display: block;
+			}
+
+			/* Date */
+			small {
+				font-size: 2rem;
+				display: block;
+			}
+		}
+
+		p {
+			max-width: 48ch;
+			font-size: 1.1rem;
+			margin: 2rem auto;
+
+			strong {
+				font-weight: normal;
+			}
+		}
+	}
+
+	> footer {
+		background: var(--color-primary);
+		color: white;
+	}
+
+	> section {
+		display: grid;
+		gap: 3rem 5rem;
+		align-items: center;
+		grid-auto-flow: dense;
+
+		> img,
+		> iframe {
+			margin: 0;
+			border: 1.25rem solid white;
+			box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
+		}
+
+		> h2 {
+			grid-column: 1 / -1;
+			text-align: center;
+		}
+
+		> div {
+			padding-inline: 1.5rem;
+
+			/* NOTE: Google forms seems to have some sort of padding built-in 🤦‍♂️ so pull it out */
+			> iframe {
+				margin-inline: -1.5rem;
+				width: calc(100% + 3rem);
+			}
+		}
+
+		@media (min-width: 960px) {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+
+			&:nth-of-type(odd) {
+				> img,
+				> iframe {
+					grid-column: 2;
+				}
+
+				> div {
+					grid-column: 1;
+				}
+			}
+		}
+	}
+
+	#intro {
+		img {
+			aspect-ratio: 1/1;
+		}
+	}
+
+	#kids {
+		img {
+			aspect-ratio: 1/1;
+		}
+	}
+
+	#location {
+		iframe {
+			aspect-ratio: 1/1;
+		}
+	}
+
+	#form {
+		iframe {
+			border: 0;
+			box-shadow: none;
+		}
+	}
+}
