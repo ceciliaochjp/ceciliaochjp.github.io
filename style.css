@@ -6,20 +6,37 @@
 	src: url("assets/Tangerine-Regular.ttf") format("truetype");
 }
 
+@font-face {
+	font-family: "Forum";
+	font-style: normal;
+	font-weight: normal;
+	font-display: swap;
+	src: url("assets/Forum-Regular.ttf") format("truetype");
+}
+
 :root {
 	interpolate-size: allow-keywords;
+	color-scheme: dark;
 
 	--site-width-min: 85vw;
 	--site-width-max: 1200px;
 	--site-width: min(var(--site-width-min), var(--site-width-max));
 	--site-padding: calc((100vw - var(--site-width)) / 2);
 
-	--text-color: light-dark(black, white);
+	--text-color: light-dark(#333, #eee);
+	--title-color: light-dark(#486052, #eee);
 
-	--body-bg: #fffbf0;
-	--color-primary: #486052;
-	--color-secondary: #90b69f;
-	--color-tertiary: #ffeee4;
+	--button-bg: light-dark(#486052, white);
+	--button-color: light-dark(white, var(--body-bg));
+
+	--body-bg: light-dark(#fffbf0, #919c8f);
+	--color-primary: light-dark(#486052, #ffeee4);
+	--color-secondary: light-dark(#ffeee4, #486052);
+	--color-darkgreen: #486052;
+
+	--img-filter-primary: brightness(0) saturate(100%) invert(36%) sepia(15%) saturate(508%) hue-rotate(92deg) brightness(94%) contrast(98%);
+
+	--link-color: light-dark(#486052, white);
 }
 
 * {
@@ -31,6 +48,7 @@ html {
 	font-size: 100%;
 	color: var(--text-color);
 	scroll-behavior: smooth;
+	color-scheme: dark;
 }
 
 body {
@@ -45,8 +63,10 @@ h4,
 h5,
 h6 {
 	font: 1.5rem/0.75 "Tangerine", serif;
-	margin: 0 0 1.5rem;
+	font: 1.5rem/1 "Forum", serif;
+	color: var(--title-color);
 	text-wrap: balance;
+	margin: 0 0 1.5rem;
 }
 
 h1 {
@@ -54,7 +74,8 @@ h1 {
 }
 
 h2 {
-	font-size: clamp(3rem, 7.5vw, 5rem);
+	font-size: clamp(3rem, 7.5vw, 4rem);
+	font-size: clamp(2rem, 7.5vw, 3rem);
 }
 
 p {
@@ -75,7 +96,7 @@ iframe {
 }
 
 a {
-	color: var(--color-primary);
+	color: var(--link-color);
 	text-underline-offset: 0.25rem;
 }
 
@@ -96,7 +117,7 @@ hr {
 	border: 0;
 	margin: 1rem 0;
 	aspect-ratio: 1340/87;
-	filter: brightness(0);
+	filter: var(--img-filter-primary);
 }
 
 details {
@@ -106,22 +127,34 @@ details {
 
 	summary {
 		cursor: pointer;
-		padding-left: 2rem;
+		padding-left: 2.5rem;
 		position: relative;
 
 		&::before {
-			content: "▾"; /* TODO: Use + instead and rotate 315deg */
-			display: block;
-			transition: rotate 0.4s ease;
+			background: var(--color-primary);
+			color: var(--body-bg);
+			border-radius: 50%;
+
+			content: "▾";
+			display: flex;
+			align-items: center;
+			justify-content: center;
+
+			width: 1.5rem;
+			height: 1.5rem;
+
 			position: absolute;
 			left: 0;
 			top: 50%;
 			translate: 0 -50%;
+
+			rotate: -90deg;
+			transition: rotate 0.4s ease;
 		}
 	}
 
 	&[open] summary::before {
-		rotate: -180deg;
+		rotate: 0deg;
 	}
 
 	> :last-child {
@@ -140,7 +173,7 @@ details {
 		transition: height 0.4s ease, content-visibility 0.4s ease allow-discrete;
 		height: 0;
 		overflow: clip;
-		padding-left: 2rem;
+		padding-left: 2.5rem;
 		font-size: smaller;
 	}
 
@@ -158,16 +191,16 @@ details {
 }
 
 .button {
-	background: var(--color-primary);
+	background: var(--button-bg);
 
 	display: inline-block;
 	padding: 0.75rem 2rem;
 
-	color: white;
+	color: var(--button-color);
 	text-decoration: none;
 	text-align: center;
 
-	border: 2px solid var(--color-primary);
+	border: 2px solid var(--button-bg);
 	border-radius: 999px;
 
 	transition: all 0.4s ease;
@@ -180,7 +213,7 @@ details {
 .button--ghost {
 	&:not(:hover) {
 		background: transparent;
-		color: var(--color-primary);
+		color: var(--button-bg);
 	}
 
 	&:hover {
@@ -220,8 +253,9 @@ body {
 
 				/* font-family: sans-serif; */
 				opacity: 0.75;
+				opacity: 0.25;
 				font-size: 400%;
-				color: var(--color-tertiary);
+				color: var(--color-secondary);
 			}
 
 			/* JP */
@@ -249,8 +283,9 @@ body {
 	}
 
 	> footer {
-		background: var(--color-primary);
-		color: white;
+		color-scheme: dark;
+		background: var(--color-darkgreen);
+		color: var(--text-color);
 	}
 
 	> section {
