@@ -30,9 +30,8 @@
 	--button-color: light-dark(white, var(--body-bg));
 
 	--body-bg: light-dark(#fffbf0, #919c8f);
-	--color-primary: light-dark(#486052, #ffeee4);
-	--color-secondary: light-dark(#ffeee4, #486052);
-	--color-darkgreen: #486052;
+	--color-primary: #486052;
+	--color-secondary: #ffeee4;
 
 	--img-filter-primary: brightness(0) saturate(100%) invert(36%) sepia(15%) saturate(508%) hue-rotate(92deg) brightness(94%) contrast(98%);
 
@@ -285,7 +284,7 @@ body {
 
 	> footer {
 		color-scheme: dark;
-		background: var(--color-darkgreen);
+		background: var(--color-primary);
 		color: var(--text-color);
 	}
 
