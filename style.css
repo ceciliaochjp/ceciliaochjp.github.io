@@ -47,11 +47,15 @@ html {
 
 /* Color schemes */
 html {
+	--color-scheme-icon: "🌙";
+
 	transition: background-color 0.4s var(--easing);
 	color-scheme: light dark;
 }
 
 html.color-scheme--dark {
+	--color-scheme-icon: "☀️";
+
 	color-scheme: dark;
 }
 
@@ -247,6 +251,24 @@ details {
 
 /* Module styling */
 body {
+	/* Color scheme switcher */
+	> label {
+		position: absolute;
+		right: 1rem;
+		top: 1rem;
+		font-size: 0;
+
+		&::before {
+			content: var(--color-scheme-icon);
+			font-size: 1rem;
+		}
+
+		input {
+			position: absolute;
+			visibility: hidden;
+		}
+	}
+
 	/* All modules - including header and footer */
 	> header,
 	> section,

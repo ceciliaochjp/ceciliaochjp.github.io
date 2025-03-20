@@ -7,7 +7,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
 		<script>
-			let SLEEK_COLOR_SCHEME;
+			let SLEEK_COLOR_SCHEME = 'dark'; // NOTE: Ignore user's initial preference and force dark
 
 			// Set the color scheme and store it in LS
 			function SLEEK_SET_COLOR_SCHEME (scheme) {
@@ -32,8 +32,7 @@
 				SLEEK_COLOR_SCHEME = localStorage.getItem('SLEEK_COLOR_SCHEME');
 			}
 			// See what user prefers
-			// NOTE: Actually - NO, always use dark
-			SLEEK_COLOR_SCHEME = 'dark';
+			// NOTE: see above - ignore this and always start on dark
 			// else {
 			// 	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
 			// 		SLEEK_COLOR_SCHEME = 'dark';
