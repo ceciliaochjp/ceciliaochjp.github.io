@@ -14,10 +14,8 @@
 	src: url("assets/Forum-Regular.ttf") format("truetype");
 }
 
+/* Config */
 :root {
-	interpolate-size: allow-keywords;
-	color-scheme: dark;
-
 	--site-width-min: 85vw;
 	--site-width-max: 1200px;
 	--site-width: min(var(--site-width-min), var(--site-width-max));
@@ -38,16 +36,35 @@
 	--link-color: light-dark(#486052, white);
 }
 
+/* Common sense */
+html {
+	interpolate-size: allow-keywords;
+}
+
 * {
 	box-sizing: border-box;
 }
 
+/* Color schemes */
+html {
+	transition: background-color 0.4s var(--easing);
+	color-scheme: light dark;
+}
+
+html.color-scheme--dark {
+	color-scheme: dark;
+}
+
+html.color-scheme--light {
+	color-scheme: light;
+}
+
+/* Reset */
 html {
 	background-color: var(--body-bg);
 	font-size: 100%;
 	color: var(--text-color);
 	scroll-behavior: smooth;
-	color-scheme: dark;
 }
 
 body {
@@ -55,6 +72,7 @@ body {
 	margin: 0;
 }
 
+/* Titles */
 h1,
 h2,
 h3,
@@ -79,6 +97,7 @@ h2 {
 	font-size: clamp(2rem, 7.5vw, 3rem); /* NOTE: With Forum */
 }
 
+/* Common elements */
 p {
 	margin: 0 0 1rem;
 }
@@ -101,6 +120,7 @@ a {
 	text-underline-offset: 0.25rem;
 }
 
+/* Buttons */
 nav {
 	display: inline-flex;
 	flex-wrap: wrap;
@@ -111,6 +131,7 @@ nav {
 	}
 }
 
+/* Separator */
 hr {
 	/* TODO: CANIUSE? https://s3-us-west-2.amazonaws.com/s.cdpn.io/101448/wedding-divider-png-9.png */
 	background: url(assets/divider.png) no-repeat;
@@ -121,6 +142,7 @@ hr {
 	filter: var(--img-filter-primary);
 }
 
+/* Accordions */
 details {
 	&:not(:last-child) {
 		margin-bottom: 0.75rem;
@@ -191,6 +213,7 @@ details {
 	}
 }
 
+/* Button */
 .button {
 	background: var(--button-bg);
 
@@ -222,7 +245,9 @@ details {
 	}
 }
 
+/* Module styling */
 body {
+	/* All modules - including header and footer */
 	> header,
 	> section,
 	> footer {
@@ -238,6 +263,7 @@ body {
 		text-align: center;
 	}
 
+	/* Header */
 	> header {
 		padding-top: 8rem;
 
@@ -281,12 +307,14 @@ body {
 		}
 	}
 
+	/* Footer */
 	> footer {
 		color-scheme: dark;
 		background: var(--color-primary);
 		color: var(--text-color);
 	}
 
+	/* All modules */
 	> section {
 		display: grid;
 		gap: 3rem 5rem;
@@ -331,28 +359,13 @@ body {
 		}
 	}
 
-	#intro {
-		img {
-			aspect-ratio: 1/1;
-		}
-	}
-
-	#kids {
-		img {
-			aspect-ratio: 1/1;
-		}
-	}
-
+	/* Specific modules */
+	#intro,
+	#kids,
 	#location {
+		img,
 		iframe {
 			aspect-ratio: 1/1;
-		}
-	}
-
-	#form {
-		iframe {
-			border: 0;
-			box-shadow: none;
 		}
 	}
 }

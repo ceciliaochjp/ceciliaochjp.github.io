@@ -6,8 +6,51 @@
 		<meta name="description" content="Vi, Cecilia & Jan Paul, gifter oss lördagen den 19 juli 2025 på Sörbyn Lodge.">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<link rel="stylesheet" href="style.css">
+		<script>
+			let SLEEK_COLOR_SCHEME;
+
+			// Set the color scheme and store it in LS
+			function SLEEK_SET_COLOR_SCHEME (scheme) {
+				if (scheme === 'dark') {
+					SLEEK_COLOR_SCHEME = 'dark';
+
+					localStorage.setItem('SLEEK_COLOR_SCHEME', SLEEK_COLOR_SCHEME);
+					document.documentElement.classList.remove('color-scheme--light');
+					document.documentElement.classList.add('color-scheme--dark');
+				}
+				else {
+					SLEEK_COLOR_SCHEME = 'light';
+
+					localStorage.setItem('SLEEK_COLOR_SCHEME', SLEEK_COLOR_SCHEME);
+					document.documentElement.classList.remove('color-scheme--dark');
+					document.documentElement.classList.add('color-scheme--light');
+				}
+			}
+
+			// User has selected a color scheme
+			if (localStorage.getItem('SLEEK_COLOR_SCHEME')) {
+				SLEEK_COLOR_SCHEME = localStorage.getItem('SLEEK_COLOR_SCHEME');
+			}
+			// See what user prefers
+			// NOTE: Actually - NO, always use dark
+			SLEEK_COLOR_SCHEME = 'dark';
+			// else {
+			// 	if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+			// 		SLEEK_COLOR_SCHEME = 'dark';
+			// 	}
+			// 	else {
+			// 		SLEEK_COLOR_SCHEME = 'light';
+			// 	}
+			// }
+
+			SLEEK_SET_COLOR_SCHEME(SLEEK_COLOR_SCHEME);
+		</script>
 	</head>
 	<body>
+		<label>
+			<input type="checkbox" name="color_scheme_dark">
+			Dark
+		</label>
 		<header>
 			<h1>Cecilia <span>&</span> <strong>Jan Paul</strong> <small>2025-07-19</small></h1>
 			<p>Vi, <strong>Cecilia & Jan Paul</strong>, gifter oss <strong>lördagen den 19 juli 2025</strong> på <strong>Sörbyn Lodge</strong>.</p>
@@ -117,5 +160,22 @@
 			<p>För eventuella frågor kontakta någon av oss, Sörbyn Lodge direkt eller vår toastmaster.</p>
 			<p>Varmt välkomna hälsar Cecilia och Jan Paul!</p>
 		</footer>
+		<script>
+			// Hook up color scheme switches
+			document.querySelectorAll('input[name=color_scheme_dark]').forEach(el => {
+				if (SLEEK_COLOR_SCHEME === 'dark') {
+					el.checked = true;
+				}
+
+				el.addEventListener('change', e => {
+					if (el.checked) {
+						SLEEK_SET_COLOR_SCHEME('dark');
+					}
+					else {
+						SLEEK_SET_COLOR_SCHEME('light');
+					}
+				});
+			});
+		</script>
 	</body>
 </html>
