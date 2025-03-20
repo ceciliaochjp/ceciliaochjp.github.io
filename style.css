@@ -1,3 +1,4 @@
+/* Fonts */
 @font-face {
 	font-family: "Tangerine";
 	font-style: normal;
@@ -16,11 +17,13 @@
 
 /* Config */
 :root {
+	/* Site width */
 	--site-width-min: 85vw;
 	--site-width-max: 1200px;
 	--site-width: min(var(--site-width-min), var(--site-width-max));
 	--site-padding: calc((100vw - var(--site-width)) / 2);
 
+	/* Colors */
 	--text-color: light-dark(#333, #eee);
 	--title-color: light-dark(#486052, #eee);
 
@@ -36,21 +39,12 @@
 	--link-color: light-dark(#486052, white);
 }
 
-/* Common sense */
-html {
-	interpolate-size: allow-keywords;
-}
-
-* {
-	box-sizing: border-box;
-}
-
 /* Color schemes */
 html {
 	--color-scheme-icon: "🌙";
 
-	transition: background-color 0.4s var(--easing);
 	color-scheme: light dark;
+	transition: background-color 0.4s ease;
 }
 
 html.color-scheme--dark {
@@ -63,12 +57,21 @@ html.color-scheme--light {
 	color-scheme: light;
 }
 
-/* Reset */
+/* Common sense */
+html {
+	interpolate-size: allow-keywords;
+	scroll-behavior: smooth;
+	font-size: 100%;
+}
+
+* {
+	box-sizing: border-box;
+}
+
+/* Base styling */
 html {
 	background-color: var(--body-bg);
-	font-size: 100%;
 	color: var(--text-color);
-	scroll-behavior: smooth;
 }
 
 body {
@@ -122,6 +125,10 @@ iframe {
 a {
 	color: var(--link-color);
 	text-underline-offset: 0.25rem;
+}
+
+label {
+	cursor: pointer;
 }
 
 /* Buttons */
@@ -253,7 +260,7 @@ details {
 body {
 	/* Color scheme switcher */
 	> label {
-		position: absolute;
+		position: fixed;
 		right: 1rem;
 		top: 1rem;
 		font-size: 0;
@@ -289,6 +296,7 @@ body {
 	> header {
 		padding-top: 8rem;
 
+		/* "Logo" */
 		h1 {
 			position: relative;
 
@@ -318,6 +326,7 @@ body {
 			}
 		}
 
+		/* Description */
 		p {
 			max-width: 48ch;
 			font-size: 1.1rem;
@@ -343,6 +352,7 @@ body {
 		align-items: center;
 		grid-auto-flow: dense;
 
+		/* "Media" */
 		> img,
 		> iframe {
 			margin: 0;
@@ -350,21 +360,24 @@ body {
 			box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.15);
 		}
 
+		/* Potential title above both media and content */
 		> h2 {
 			grid-column: 1 / -1;
 			text-align: center;
 		}
 
+		/* Content */
 		> div {
-			padding-inline: 1.5rem;
+			padding-inline: 1.5rem; /* NOTE: This looked better imo */
 
 			/* NOTE: Google forms seems to have some sort of padding built-in 🤦‍♂️ so pull it out */
 			> iframe {
-				margin-inline: -1.5rem;
+				margin-inline: -1.5rem; /* NOTE: Same as padding-inline above */
 				width: calc(100% + 3rem);
 			}
 		}
 
+		/* Two cols in high res */
 		@media (min-width: 960px) {
 			grid-template-columns: repeat(2, minmax(0, 1fr));
 
