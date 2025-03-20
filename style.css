@@ -274,6 +274,10 @@ body {
 		input {
 			position: absolute;
 			visibility: hidden;
+
+			/* NOTE: To prevent horizontal scrollbar */
+			left: 0;
+			top: 0;
 		}
 	}
 
