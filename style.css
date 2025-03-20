@@ -260,13 +260,14 @@ details {
 body {
 	/* Color scheme switcher */
 	> label {
-		position: fixed;
+		position: absolute;
 		right: 1rem;
 		top: 1rem;
 		font-size: 0;
 
 		&::before {
 			content: var(--color-scheme-icon);
+			filter: grayscale(1);
 			font-size: 1rem;
 		}
 
