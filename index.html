@@ -598,7 +598,7 @@
 						entry.target.src = entry.target.dataset.src;
 					}
 				});
-			}, {threshold: .25});
+			}, {threshold: 0.1});
 
 			document.querySelectorAll('[data-src]').forEach(el => {
 				observer.observe(el);
